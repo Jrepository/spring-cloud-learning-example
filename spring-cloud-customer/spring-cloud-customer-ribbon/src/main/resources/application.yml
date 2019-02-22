@@ -1,0 +1,14 @@
+server:
+  port: 9002
+#为服务命名
+spring:
+  application:
+    name: spring-cloud-customer-ribbon
+#指定服务注册中心的地址
+eureka:
+  client:
+    service-url: 
+      defaultZone: http://localhost:8081/eureka/,http://localhost:8082/eureka/,http://localhost:8083/eureka/
+spring-cloud-customer-ribbon:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
