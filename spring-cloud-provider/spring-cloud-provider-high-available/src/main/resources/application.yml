@@ -1,0 +1,31 @@
+# 配置spring-cloud-provider-high-available公共部分
+spring:
+  application:
+    # 用于指定Eureka Server中application的名称
+    name: spring-cloud-provider-high-available
+
+eureka:
+  client:
+    service-url: 
+      defaultZone: http://peer1:8081/eureka/,http://peer2:8082/eureka/
+  instance:
+    prefer-ip-address: true
+
+---
+spring:
+  profiles: peer1
+server:
+  port: 8000 # 第一个节点端口
+
+eureka:
+  instance:
+    instance-id:spring-cloud-provider-high-available-8000
+
+---
+spring:
+  profiles: peer2
+server:
+  port: 9000 # 第二个节点端口
+eureka:
+  instance:
+    instance-id: spring-cloud-provider-high-available-9000
